@@ -1,16 +1,13 @@
-
 package carregamento_login;
 
+import javax.swing.JOptionPane;
 
 public class tela_login extends javax.swing.JFrame {
-
 
     public tela_login() {
         initComponents();
     }
 
-    
-    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -40,6 +37,11 @@ public class tela_login extends javax.swing.JFrame {
         campo_senha.setBackground(new java.awt.Color(204, 204, 204));
 
         botao_entrar.setText("ENTRAR");
+        botao_entrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botao_entrarActionPerformed(evt);
+            }
+        });
 
         jLabel3.setForeground(new java.awt.Color(204, 204, 204));
         jLabel3.setText("Usuário");
@@ -111,9 +113,16 @@ public class tela_login extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-   
+    private void botao_entrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_entrarActionPerformed
+        if (campo_usuario.getText().equals("admin") && campo_senha.getText().equals("12345")) {
+            JOptionPane.showMessageDialog(null, "Bem-vindo admin");
+        } else {
+            JOptionPane.showMessageDialog(null, "Usuário ou senha incoreta.");
+        }
+    }//GEN-LAST:event_botao_entrarActionPerformed
+
     public static void main(String args[]) {
-        
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new tela_login().setVisible(true);
