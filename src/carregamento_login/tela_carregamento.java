@@ -1,12 +1,37 @@
 package carregamento_login;
 
+import static java.lang.Thread.sleep;
+import javax.swing.JOptionPane;
+
 
 public class tela_carregamento extends javax.swing.JFrame {
 
    
     public tela_carregamento() {
         initComponents();
+        new  Thread(){
+            
+         public void run(){
+             try {      
+                for(int i = 0; i <= 100;  i = i+2){
+                    sleep(50);
+
+                    barra_progresso.setValue(i);
+                    barra_porcentagem.setText(Integer.toString(i) + "%");
+                }
+                     
+                dispose();
+                
+                tela_login login = new tela_login();
+                login.setVisible(true);
+                
+            }catch(InterruptedException e){
+                JOptionPane.showConfirmDialog(null, "Erro!");
+            }
+         }  
+        }.start();
     }
+    
 
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -19,10 +44,18 @@ public class tela_carregamento extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/meditando.gif"))); // NOI18N
+
+        barra_progresso.setBackground(new java.awt.Color(255, 255, 255));
+        barra_progresso.setForeground(new java.awt.Color(0, 204, 204));
 
         barra_porcentagem.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
 
@@ -72,22 +105,11 @@ public class tela_carregamento extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    public static void main(String args[]) throws InterruptedException {
-        tela_carregamento carregamento = new tela_carregamento();
-        carregamento.setVisible(true);
-        
-        for (int i = 0; i <= 100; i++) {
-            Thread.sleep(50);
-            carregamento.barra_progresso.setValue(i);
-            carregamento.barra_porcentagem.setText(Integer.toString(i) + "%");    
-        }
-        carregamento.dispose();
-        
-        tela_login login = new tela_login();
-        login.setVisible(true);
-        
-   
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+      
+    }//GEN-LAST:event_formWindowClosed
 
+    public static void main(String args[]){ 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new tela_carregamento().setVisible(true);
